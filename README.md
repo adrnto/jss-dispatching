@@ -365,3 +365,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
      Journal of Operational Research, vol. 64, no. 2, pp. 278–285, 1993.
 
 - Park, Junyoung, Sanjar Bakhtiyar, and Jinkyoo Park. "ScheduleNet: Learn to solve multi-agent scheduling problems with reinforcement learning." arXiv preprint arXiv:2106.03051, 2021. 
+# jss-dispatching
