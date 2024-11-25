@@ -17,6 +17,8 @@ from job_shop_lib._job_shop_instance import JobShopInstance
 from job_shop_lib._scheduled_operation import ScheduledOperation
 from job_shop_lib._schedule import Schedule
 from job_shop_lib._base_solver import BaseSolver, Solver
+from .giffler_thompson import GifflerThompsonScheduler
+
 
 
 __all__ = [
@@ -26,4 +28,5 @@ __all__ = [
     "Schedule",
     "Solver",
     "BaseSolver",
+    "GifflerThompsonScheduler",
 ]

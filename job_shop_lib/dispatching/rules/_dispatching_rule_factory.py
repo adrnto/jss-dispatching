@@ -17,7 +17,17 @@ from job_shop_lib.dispatching.rules import (
     most_operations_remaining_rule,
     random_operation_rule,
     most_work_remaining_rule,
+    
+    
 )
+from ._dispatching_rules_functions import (
+    longest_processing_time_rule,
+    least_work_remaining_rule,
+    last_in_first_out_rule,
+    least_operations_remaining_rule,
+    
+    )
+
 
 
 class DispatchingRuleType(str, Enum):
@@ -28,6 +38,10 @@ class DispatchingRuleType(str, Enum):
     MOST_WORK_REMAINING = "most_work_remaining"
     MOST_OPERATIONS_REMAINING = "most_operations_remaining"
     RANDOM = "random"
+    LONGEST_PROCESSING_TIME = "longest_processing_time"
+    LEAST_WORK_REMAINING = "least_work_remaining"
+    LAST_IN_FIRST_OUT = "last_in_first_out"
+    LEAST_OPERATIONS_REMAINING = "least_operations_remaining"
 
 
 def dispatching_rule_factory(
@@ -70,6 +84,11 @@ def dispatching_rule_factory(
             most_operations_remaining_rule
         ),
         DispatchingRuleType.RANDOM: random_operation_rule,
+        
+        DispatchingRuleType.LONGEST_PROCESSING_TIME: longest_processing_time_rule,
+        DispatchingRuleType.LEAST_WORK_REMAINING: least_work_remaining_rule,
+        DispatchingRuleType.LAST_IN_FIRST_OUT: last_in_first_out_rule,
+        DispatchingRuleType.LEAST_OPERATIONS_REMAINING: least_operations_remaining_rule,
     }
 
     dispatching_rule = dispatching_rule.lower()

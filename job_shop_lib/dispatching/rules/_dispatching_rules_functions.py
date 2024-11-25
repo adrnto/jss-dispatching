@@ -56,6 +56,47 @@ def most_operations_remaining_rule(dispatcher: Dispatcher) -> Operation:
         dispatcher.ready_operations(),
         key=lambda operation: job_remaining_operations[operation.job_id],
     )
+    
+    
+    
+def longest_processing_time_rule(dispatcher: Dispatcher) -> Operation:
+    """Dispatches the operation with the longest duration."""
+    return max(
+        dispatcher.ready_operations(),
+        key=lambda operation: operation.duration,
+    )
+    
+
+def least_work_remaining_rule(dispatcher: Dispatcher) -> Operation:
+    """Dispatches the operation with the least work remaining."""
+    job_remaining_work = [0] * dispatcher.instance.num_jobs
+    for operation in dispatcher.unscheduled_operations():
+        job_remaining_work[operation.job_id] += operation.duration
+        
+    return min(
+        dispatcher.ready_operations(),
+        key=lambda operation: job_remaining_work[operation.job_id],
+    )
+
+
+def last_in_first_out_rule(dispatcher: Dispatcher) -> Operation:
+    """Dispatches the last operation that arrived (LIFO)."""
+    return max(
+        dispatcher.ready_operations(),
+        key=lambda operation: operation.position_in_job,
+    )
+    
+def least_operations_remaining_rule(dispatcher: Dispatcher) -> Operation:
+    """Dispatches the operation which job has the most remaining operations."""
+    job_remaining_operations = [0] * dispatcher.instance.num_jobs
+    for operation in dispatcher.uncompleted_operations():
+        job_remaining_operations[operation.job_id] += 1
+
+    return min(
+        dispatcher.ready_operations(),
+        key=lambda operation: job_remaining_operations[operation.job_id],
+    )
+
 
 
 def random_operation_rule(dispatcher: Dispatcher) -> Operation:
